@@ -13,8 +13,10 @@ export class App extends Component {
     filter: '',
   };
 
-  componentDidUpdate = () => {
-    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  componentDidUpdate = (_prevProps, prevState) => {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    };
   };
 
   checkingForMatches = (value) => {
